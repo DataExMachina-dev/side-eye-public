@@ -12,8 +12,13 @@ Ex-Ray is a new-generation debugger for complex Go services. In the shift toward
 - Explore the execution state of all goroutines at a certain point in time
 - Collect interesting data from stacks and heap
 - Produce reports customized to your programs
+- Explore related goroutines across network boundaries (e.g. trace a request across gRPC remote calls)
 - Query and explore the collected data with SQL
 - Present the data in Grafana dashboards
 
 
 
+#### Installation
+- Log into app.exray.dev with your work email
+- Copy your organization’s API token
+- Install the Ex-Ray agent on all the machines
