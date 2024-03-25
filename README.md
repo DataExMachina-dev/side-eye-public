@@ -124,11 +124,27 @@ Taking the idea of custom reports further, we are working on a Grafana plugin
 that facilitates the creation of dashboards backed by snapshot data.
 
 ## Installation
-- Log into app.exray.dev with your work email (if a personal Google account is
-  used, the collected data will be accessible only to that one user instead of
-  it being shared with everyone using an email address from the same domain)
+- Log into [app.exray.dev](https://app.exray.dev) with your work email
+  - a personal Google account can also be used, in which case the collected data
+    will be accessible only to your user, instead of it being shared with
+    everyone using an email address from the same domain
 - Copy your organization’s API token
-- Install the Ex-Ray agent on all the machines
+  - click on your user's avatar in the top
+    right corner, copy the "agent token" (verifying that the organization's domain
+    name is indeed the domain of email addresses you want to share snapshot data
+    with)
+- Install the Ex-Ray agent on all the machines hosting processes that you want
+  to monitor
+  - on each machine, run `curl https://sh.exray.dev/ | sh -s - -t <tenant-token>`,
+    replacing `<tenant-token>` with the organization's API token copied from the
+    Ex-Ray web app.
+  - the script will install the agent through a snap package. Installation uses
+    `sudo`; you might need to enter your password.
+  - to uninstall the agent, do `sudo snap remove --purge exray-agent`
+
+## Future plans
+
+TODO
 
 ## Get in touch
 
