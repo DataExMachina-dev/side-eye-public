@@ -1,0 +1,9 @@
+---
+weight: 1
+bookFlatSection: true
+title: "Getting Started"
+---
+
+# Introduction
+
+## Installing snap
