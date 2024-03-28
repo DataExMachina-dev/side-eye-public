@@ -1,6 +1,6 @@
 baseURL = 'https://docs.exray.dev/'
 languageCode = 'en-us'
-title = 'Ex-ray Debugger'
+title = 'Ex-Ray Debugger'
 
 [deployment]
 

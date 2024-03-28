@@ -1,7 +1,6 @@
 ---
-weight: 1
-bookFlatSection: true
 title: "FAQ"
+weight: 1
 ---
 
 # FAQ
