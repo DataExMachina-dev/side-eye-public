@@ -10,3 +10,6 @@ URL = "s3://exray-docs?region=us-east-2"
 name = "production"
 
 cloudFrontDistributionID = "E2EIHKCAY2IJSJ"
+
+[params]
+BookSection = '*'
