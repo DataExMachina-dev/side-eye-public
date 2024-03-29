@@ -71,9 +71,9 @@ a eBPF probe that it injects into the target process. See more details [below](#
 
 ### What are snapshots?
 
-Snapshots are currently Ex-Ray's main feature. A snapshot represents information
+Snapshots are currently Ex-Ray's main feature. A snapshot contains information
 about the distributed state of execution of a service at a point in time; it
-contains the stack traces of all the goroutines currently alive across all the
+includes the stack traces of all the goroutines currently alive across all the
 processes that are part of the snapshot (both goroutines that are currently
 running on-CPU, and the many more goroutines that are blocked waiting for some
 asynchronous condition), plus variable data that was captured from different
@@ -83,16 +83,18 @@ Snapshots are similar in spirit to core dumps. However, they are much more
 targeted and can be collected way cheaper. A snapshot does not include the whole
 heap; it includes only data that was explicitly requested. This makes snapshots
 cheap enough to be collected at will. Snapshots bring the captured stack traces
-front and center, so they are also similar to the "goroutine profiles" (not to
-be confused with the "cpu profiles" produced by pprof; see
-[below](#how-does-ex-ray-compare-to-profiling)) that pprof can produce for Go
-processes, except that snapshots also include variable data. And, of course,
-both core dumps and goroutine profiles are associated with a single process
-whereas snapshots work across many processes.
+front and center, so they are also similar to the "goroutine profiles" that
+pprof can produce for Go processes (not to be confused with the "cpu profiles"
+produced by pprof; see [below](#how-does-ex-ray-compare-to-profiling)), except
+that snapshots also include variable data. And, of course, both core dumps and
+goroutine profiles are associated with a single process whereas snapshots work
+across many processes.
 
 When visualizing a snapshot with the [Ex-Ray web app](app.exray.dev), you can
 focus on the stack traces, or on specific variable data, or you can visualize
-the two inter-mixed. Ex-Ray aims to be the best goroutine exploration
+the two inter-mixed. Ex-Ray aims to be the best goroutine exploration tool out
+there for low-level spelunking, but it also lets you create and focus on
+higher-level "reports" out of the variable data.
 
 ### How does Ex-Ray work?
 
@@ -127,6 +129,14 @@ program as a Web Assembly module (for isolation purposes). Each agent then
 briefly pauses its target processes, triggers the probe, processes the output
 data and returns it to the control plane. Back on the server, we put the data
 from all agents together and save it as a snapshot.
+
+### Is taking a snapshot safe?
+
+Yes! Taking a snapshot is guaranteed to not affect the execution of target
+processes (apart from very briefly pausing them; see below). Ex-Ray uses eBPF
+probes, which are verified by the Linux kernel to not have side effects (e.g.
+they cannot modify the state of the target process in any way; they can't cause
+segmentation faults, etc.).
 
 ### How do I explore and organize the snapshot data that Ex-Ray collects?
 
