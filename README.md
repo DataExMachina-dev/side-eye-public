@@ -1,4 +1,4 @@
-# Ex-Ray - a cloud-native debugger for production Golang systems
+# Ex-Ray — a cloud-native debugger for production Golang systems
 ###### Ask your production software anything
 
 ![Ex-Ray iceberg](images/iceberg.png)

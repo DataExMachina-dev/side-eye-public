@@ -216,8 +216,8 @@ invest in code optimization because it's likely to turn out into savings on your
 cloud compute bill, or on higher throughput. At times, a CPU profile can be very
 useful for debugging too, as it can indirectly hint to some pathology that a
 process has hit (e.g. perhaps a quadratic algorithm has finally bitten a user,
-or some code that you weren't expecting to run at all is suddenly very
-prominent).
+or perhaps an error code path that you weren't expecting to run at all is
+suddenly very prominent).
 
 On the other hand, CPU profiles generally don't have any "data" in them: they
 only describe the shape of the code that is executing without telling you if
