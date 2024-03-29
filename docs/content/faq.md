@@ -213,35 +213,37 @@ collection of samples in a CPU profile is through a flame graph (Ex-Ray also
 uses flame graphs to visualize the stacks of the goroutines in a snapshot;
 perhaps that's what prompted this question). Such a report can tell you where to
 invest in code optimization because it's likely to turn out into savings on your
-cloud compute bill, or on lower latency for some requests.  At times, a CPU
-profile can be very useful for debugging too, as it can indirectly hint to some
-pathology that a process has hit (e.g. perhaps a quadratic algorithm has finally
-bitten a user, or some code that you weren't expecting to run at all is suddenly
-very prominent).
+cloud compute bill, or on higher throughput. At times, a CPU profile can be very
+useful for debugging too, as it can indirectly hint to some pathology that a
+process has hit (e.g. perhaps a quadratic algorithm has finally bitten a user,
+or some code that you weren't expecting to run at all is suddenly very
+prominent).
 
 On the other hand, CPU profiles generally don't have any "data" in them: they
 only describe the shape of the code that is executing without telling you if
 you're looking at a single request being executed over a long time duration or
 many short requests, or which particular user of a multi-tenant system is
-responsible for the CPU load. Also, by definition CPU profiles only give you
+responsible for the CPU load. Also, by definition, CPU profiles only give you
 information about what's running on a CPU; they don't tell you anything about
-blocked operations (so, for example, if all your operations are mostly blocked),
-a CPU profile may well be completely empty. Because of all these, CPU profiles
-are not really a debugging tool.
+blocked operations. So, for example, if all your operations are mostly blocked),
+a CPU profile may well be completely empty. Or, to the contrary, if you're
+profiling a trading system, you might see that the CPU is always completely busy
+doing uninteresting work — polling the network interface. Because of all these,
+CPU profiles are not really a debugging tool.
 
-Snapshots do not rely on any sampling: they contain information about all the
-goroutines alive at a point in time (the flip side is that a snapshot only talks
-about a single point in time). Similarly, snapshots do not make a distinction
-between goroutines that are running when the snapshot was taken and goroutines
-that are not currently scheduled (because they are blocked, or simply because
-all threads are busy) — you get information on all of them just the same. And,
-of course, snapshots include arbitrary data that you ask for, which means you
-can find out exactly what your program is working on. This is difference, for
-example, between a CPU profile telling you that your database is busy with
-executing SQL queries, and telling you specifically which queries it is
-currently executing (including telling you whether there's one huge query
-executing in parallel on a bunch of goroutines or if you're dealing with many
-small queries).
+Snapshots are not a statistical measurement and they do not rely on any
+sampling: they contain information about all the goroutines alive at a point in
+time (the flip side is that a snapshot only talks about a single point in time).
+Similarly, snapshots do not make a distinction between goroutines that are
+running when the snapshot was taken and goroutines that are not currently
+scheduled (because they are blocked, or simply because all threads are busy) —
+you get information on all of them just the same. And, of course, snapshots
+include arbitrary data that you ask for, which means you can find out exactly
+what your program is working on. This is difference, for example, between a CPU
+profile telling you that your database is busy with executing SQL queries, and
+telling you specifically which queries it is currently executing (including
+telling you whether there's one huge query executing in parallel on a bunch of
+goroutines or if you're dealing with many small queries).
 
 Having said all this about how great snapshots are, trying to figure out
 specifically "what is using my CPUs" is a common question, and one can imagine a
