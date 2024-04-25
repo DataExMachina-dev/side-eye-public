@@ -7,7 +7,7 @@ weight: 1
 
 ## What are snapshots?
 
-Ex-Ray's main feature is the ability to "capture snapshots" of your distributed
+Side-Eye's main feature is the ability to "capture snapshots" of your distributed
 system. A snapshot contains information about the distributed state of execution
 of a service at a point in time; it includes the stack traces of all the
 goroutines currently alive across all the processes that are part of the
@@ -23,14 +23,14 @@ cheap enough to be collected at will. Snapshots bring the captured stack traces
 front and center, so they are also similar to the "goroutine profiles" that
 pprof can produce for Go processes (not to be confused with the "cpu profiles"
 produced by pprof; see [comparing to profiling]({{< ref
-"faq#how-does-ex-ray-compare-to-profiling" >}}) for more), except that snapshots
+"faq#how-does-side-eye-compare-to-profiling" >}}) for more), except that snapshots
 also include variable data. And, of course, both core dumps and goroutine
 profiles are associated with a single process whereas snapshots work across many
 processes.
 
-When visualizing a snapshot with the [Ex-Ray web app](app.exray.dev), you can
+When visualizing a snapshot with the [Side-Eye web app](https://app.side-eye.io), you can
 focus on the stack traces, or on specific variable data, or you can visualize
-the two inter-mixed. Ex-Ray aims to be the best goroutine exploration tool out
+the two inter-mixed. Side-Eye aims to be the best goroutine exploration tool out
 there for low-level spelunking, but it also lets you create and focus on
 higher-level "reports" out of the variable data.
 
@@ -45,7 +45,7 @@ TODO
 ## Safety guarantees
 
 Taking a snapshot is "safe": it is guaranteed to not affect the execution of
-target processes (apart from very briefly pausing them; see below). Ex-Ray uses
+target processes (apart from very briefly pausing them; see below). Side-Eye uses
 eBPF probes, which are verified by the Linux kernel to not have side effects
 (e.g. they cannot modify the state of the target process in any way; they can't
 cause segmentation faults, etc.).
@@ -64,6 +64,6 @@ RPC handler running on process A without a corresponding client on process B
 ## What is the cost of a snapshot?
 
 A process is paused while its data is collected. How long that pause is depends
-on how many goroutines a process has and how much data Ex-Ray was asked to
+on how many goroutines a process has and how much data Side-Eye was asked to
 collect. Generally it takes from under 1ms to 3ms. If this is too much for you,
 please contact us.

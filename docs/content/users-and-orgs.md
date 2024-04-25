@@ -5,7 +5,7 @@ weight: 1
 
 # Users and organizations
 
-Ex-Ray is designed for teams of people (although you can certainly use it by
+Side-Eye is designed for teams of people (although you can certainly use it by
 yourself). As such, individual users belong to organizations, and snapshots are
 accessible to the whole organization. Agents report processes on behalf of an
 organization (agents are configured with an organization-wide API token), and
