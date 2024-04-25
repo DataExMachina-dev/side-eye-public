@@ -2,7 +2,7 @@
 
 ###### Ask your production software anything
 
-![Side-Eye iceberg](images/iceberg.png)
+![Side-Eye iceberg](images/iceberg.webp)
 
 Side-Eye, from Data Ex Machina, is a new-generation debugger for engineers that
 care about mission-critical systems running in production. Using Side-Eye is free.
