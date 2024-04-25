@@ -1,11 +1,11 @@
-# Ex-Ray — a cloud-native debugger for production Golang systems
+# Side-Eye — a cloud-native debugger for production Golang systems
+
 ###### Ask your production software anything
 
-![Ex-Ray iceberg](images/iceberg.png)
+![Side-Eye iceberg](images/iceberg.png)
 
-
-Ex-Ray, from Data Ex Machina, is a new-generation debugger for engineers that
-care about mission-critical systems running in production. Using Ex-Ray is free.
+Side-Eye, from Data Ex Machina, is a new-generation debugger for engineers that
+care about mission-critical systems running in production. Using Side-Eye is free.
 
 In the shift towards cloud computing and micro-services, we have lost an
 essential development and support tool – the debugger. Debuggers are great for
@@ -15,11 +15,11 @@ amount of time and certainly a human cannot be in the loop while a process is
 stopped, no single person understands all the code of complex systems, etc.).
 At the same time, software has been getting ever more complex; now we need
 advanced observability tooling more than ever. We don’t have to throw out the
-baby with the bathwater. Ex-Ray is designed to work for modern cloud software
+baby with the bathwater. Side-Eye is designed to work for modern cloud software
 running in production. It aims to make debugging pleasant and exciting by
 bringing back the ability to “ask your software anything”.
 
-Ex-Ray consists of an agent that runs on every machine hosting processes that
+Side-Eye consists of an agent that runs on every machine hosting processes that
 need monitoring, and a hosted service that stores and processes data collected
 by the agents. Users use the debugger through a web application that gives
 access to the agents installed in the different environments of the organization
@@ -27,13 +27,14 @@ access to the agents installed in the different environments of the organization
 debugger can produce "snapshots" of the state of a distributed system,
 collecting stack traces and arbitrary variables data.
 
-Ex-Ray works by dynamically instrumenting the Go code of the monitored processes
+Side-Eye works by dynamically instrumenting the Go code of the monitored processes
 using eBPF. No code changes are necessary; based on a specification of what to
-collect and the debug information of the deployed binaries, Ex-Ray generates
+collect and the debug information of the deployed binaries, Side-Eye generates
 eBPF probes that walk stacks, recognize interesting functions, read variables,
 chase pointers, etc.
 
 #### Features
+
 - Collect “snapshots” of a whole distributed system
 - Explore the execution state of all goroutines at a certain point in time
 - Collect interesting data from stacks and heap
@@ -43,7 +44,8 @@ chase pointers, etc.
 - Present the data in Grafana dashboards
 
 ### Explore the execution state of all goroutines
-Ex-Ray lets you explore the stack traces of all the goroutines running in the
+
+Side-Eye lets you explore the stack traces of all the goroutines running in the
 snapshotted processes. You can visualize the goroutines in different ways, for
 example as a flamegraph showing an aggregated view of all the goroutines.
 
@@ -56,7 +58,7 @@ focus on one goroutine and see variables collected from different stack frames.
 
 ### Collect interesting data from stacks and heap
 
-The main power of Ex-Ray is in the ability to collect variables from the stack
+The main power of Side-Eye is in the ability to collect variables from the stack
 frames of the different goroutines. This data can be explored and queried
 through SQL tables.
 
@@ -64,7 +66,7 @@ through SQL tables.
 
 ### Navigating between related goroutines
 
-Ex-Ray has the ability to link together frames from different goroutines (or,
+Side-Eye has the ability to link together frames from different goroutines (or,
 more generally, different entities from the collected data). For example, an
 operation holding that is currently blocked trying to acquire a lock can be
 linked to the operation that is currently holding the lock. Or, a client-side
@@ -76,11 +78,10 @@ An example of going back and forth between a client and a server goroutine over
 a gRPC request link.
 ![stacks linked through gRPC](images/grpc-stacks-linked.png)
 
-
 ### Debugging at scale
 
 Debugging a complex system involves a team of people working over a period of
-time. Ex-Ray is designed to support team collaboration. Debugging sessions do not
+time. Side-Eye is designed to support team collaboration. Debugging sessions do not
 start with a blinking cursor; they start from a specification of what data to
 collect and how to organise it that was built over time by colleagues working on
 the same codebase.
@@ -93,7 +94,7 @@ entities are linked together.
 
 ### Reports
 
-Ex-Ray aims to let users operate at different levels of abstraction. At the
+Side-Eye aims to let users operate at different levels of abstraction. At the
 lowest level, raw data can be collected. This data is explored in the context of
 goroutines, stack traces and stack frames (i.e. functions). The specification of
 which data to collect involves familiarity with the code – selecting functions
@@ -115,7 +116,7 @@ programmed into services for debugging purposes (web pages that present some
 current process-wide or cluster-wide state for debugging). Taking such
 instrumentation out of the codebase, and into a dedicated debugging tool, makes
 the reporting much more nimble and flexible: it can evolve on a different
-schedule from the codebase (in particular, it can be changed *on the fly* as
+schedule from the codebase (in particular, it can be changed _on the fly_ as
 someone needs more information).
 
 ### Grafana plugin
@@ -124,7 +125,8 @@ Taking the idea of custom reports further, we are working on a Grafana plugin
 that facilitates the creation of dashboards backed by snapshot data.
 
 ## Installation
-- Log into [app.exray.dev](https://app.exray.dev) with your work email
+
+- Log into [app.side-eye.io](https://app.side-eye.io) with your work email
   - a personal Google account can also be used, in which case the collected data
     will be accessible only to your user, instead of it being shared with
     everyone using an email address from the same domain
@@ -133,14 +135,14 @@ that facilitates the creation of dashboards backed by snapshot data.
     right corner, copy the "agent token" (verifying that the organization's domain
     name is indeed the domain of email addresses you want to share snapshot data
     with)
-- Install the Ex-Ray agent on all the machines hosting processes that you want
+- Install the Side-Eye agent on all the machines hosting processes that you want
   to monitor
-  - on each machine, run `curl https://sh.exray.dev/ | sh -s - -t <tenant-token>`,
-    replacing `<tenant-token>` with the organization's API token copied from the
-    Ex-Ray web app.
+  - on each machine, run `curl https://sh.side-eye.io/ | SIDE_EYE_API_TOKEN=<token> sh`,
+    replacing `<token>` with the organization's API token copied from the
+    Side-Eye web app.
   - the script will install the agent through a snap package. Installation uses
     `sudo`; you might need to enter your password.
-  - to uninstall the agent, do `sudo snap remove --purge exray-agent`
+  - to uninstall the agent, do `sudo snap remove --purge side-eye-agent`
 
 ## Future plans
 
