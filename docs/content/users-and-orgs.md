@@ -1,6 +1,6 @@
 ---
 title: "Users and organizations"
-weight: 1
+weight: 40
 ---
 
 # Users and organizations

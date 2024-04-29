@@ -1,21 +1,24 @@
 ---
 title: "Installing the Side-Eye agent"
-weight: 1
+weight: 10
 ---
 
 ## Installing the Side-Eye agent
 
-In order to install `side-eye-agent` on your machine:
+In order to install `side-eye-agent` on a Linux machine:
 
-- Log in to the [Side-Eye] web application and click on your user icon at the top right (or click [here](https://app.side-eye.dev/login)).
+- Log in to the [Side-Eye] web application and click on your user icon at the
+  top right (or click [here](https://app.side-eye.dev/login)).
 - Copy the API token corresponding to your organization.
   - token is shared by all users with email addresses at the same domain (see
-    [Users and organizations]({{<ref "users-and-orgs">}}) for more info).
+    [Users and organizations]({{<relref "users-and-orgs">}}) for more info).
 - Run `curl https://sh.side-eye.io | sh` and paste the API token when prompted.
   - Or pass the API token to the installation script directly:  
     `curl https://sh.side-eye.io | SIDE_EYE_API_TOKEN=<token> sh`
 
-This will install the `side-eye-agent` through a snap package.
+This will install the `side-eye-agent` through a snap package. Once agents are
+running, they should show up when you log in to the Side-Eye web app at
+[app.side-eye.io](https://app.side-eye.io).
 
 [Side-Eye]: https://app.side-eye.io/
 
@@ -55,7 +58,7 @@ Side-Eye uses the program configured for a process in a coupled of ways:
   example, we can configure the "CockroachDB" program such that processes in a
   CockroachDB cluster are identified as "Node 1", "Node 2", etc. based on data
   dynamically read from each process' memory.
-  See [Process friendly names]( {{<ref "process-friendly-names">}}) for more info.
+  See [Process friendly names]( {{<relref "process-friendly-names">}}) for more info.
 
 ## Configuring multiple distinct environments
 

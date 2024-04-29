@@ -1,6 +1,6 @@
 ---
 title: "Process friendly names"
-weight: 1
+weight: 50
 ---
 
 # Process friendly names

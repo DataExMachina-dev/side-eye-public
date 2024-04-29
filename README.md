@@ -4,7 +4,7 @@
 
 ![Side-Eye iceberg](images/iceberg.webp)
 
-Side-Eye, from Data Ex Machina, is a new-generation debugger for engineers that
+Side-Eye, from Data Ex Machina, is a next-generation debugger for engineers that
 care about mission-critical systems running in production. Using Side-Eye is free.
 
 In the shift towards cloud computing and micro-services, we have lost an
