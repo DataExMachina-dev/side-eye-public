@@ -3,6 +3,11 @@ title: "Demo walk-though"
 weight: 40
 ---
 
+{{<hint info>}}
+This walk-through is meant to be used with the [demo-raw.app.side-eye.io](demo-raw.app.side-eye.io)
+demo sandbox.
+{{</hint>}}
+
 Let’s go through an example of using Side-Eye to investigate an issue. We’ll use
 a toy service and do a walk through using the debugger to understand a problem.
 Once we’re satisfied with understanding the problem, we’ll briefly show how a
@@ -39,14 +44,14 @@ The broad strategy is the following:
 
 To take a snapshot, we need the client and server to be running, and we need the
 Side-Eye agent to be running on the respective machine(s). We have a sandbox
-environment set up for this, accessible at <a
-href="https://demo-raw.app.side-eye.io">demo-raw.app.side-eye.io</a> – this is
-the Side-Eye web app connected to one agent running on a VM with our client and
-server. There is also <a href="demo.app.side-eye.io">demo.app.side-eye.io</a> –
-a demo environment that monitors the same processes but where Side-Eye has
-already been configured to collect all the data that we’ll require in this
-tutorial. If you get lost or want to skip ahead, you can use that one to see the
-end state.
+environment set up for this, accessible at
+[demo-raw.app.side-eye.io](https://demo-raw.app.side-eye.io) – this is the
+Side-Eye web app connected to one agent running on the VM where our client and
+server programs are running. There is also
+[demo.app.side-eye.io](http://demo.app.side-eye.io) – a demo environment that
+monitors the same processes, but where Side-Eye has already been configured to
+collect all the data that we’ll require in this tutorial. If you get lost or
+want to skip ahead, you can use that one to see the end state.
 
 Once we’re in the sandbox, the first thing we need to do is take a snapshot of
 the processes we’re interested in. By expanding the arrow on the “Capture
