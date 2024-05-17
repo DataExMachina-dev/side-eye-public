@@ -1,5 +1,6 @@
 To see the docs, run
 ```shell
+cd docs
 hugo server --theme=hugo-book
 ```
 Make sure you've run `git submodule update --init`.
