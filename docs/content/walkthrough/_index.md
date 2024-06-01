@@ -4,7 +4,7 @@ weight: 40
 ---
 
 {{<hint info>}}
-This walk-through is meant to be used with the [demo-raw.app.side-eye.io](demo-raw.app.side-eye.io)
+This walk-through is meant to be used with the [demo-raw.app.side-eye.io](https://demo-raw.app.side-eye.io)
 demo sandbox.
 {{</hint>}}
 
@@ -33,8 +33,8 @@ The broad strategy is the following:
 * We’ll use Side-Eye to take a snapshot of our system at an arbitrary time.
 * We’ll look in the snapshot and try to identify a client- and server-side
   goroutines corresponding to one of these slow RPCs.
-* If we do find such a goroutine, we’ll look at their stack trace and see what
-  they’re doing / what they’re blocked on. Depending on that, we’ll judge
+* If we do find such a goroutine, we’ll look at its stack trace and see what
+  its doing / what it's blocked on. Depending on that, we’ll judge
   whether what we’re seeing in that one specific snapshot is likely to be
   representative of all the slow RPCs, or if it looks like there might be more
   than one problem.
@@ -87,10 +87,10 @@ We know that some RPCs take 1 minute (which is very long) so, hopefully, at the
 time of the snapshot there is such a slow RPC in-flight (or maybe multiple of
 them?). Cross-checking the client-side stack trace with the [source
 code](https://github.com/DataExMachina-dev/side-eye-demos/blob/f29ecfdda0b1cf6374417bcc3111bb6be87b6ff1/slow-rpc/client/client.go#L38-L50),
-we see that the `runClient` calls `rpcClient.GetInfo` in a loop. The first
+we see that `runClient` calls `rpcClient.GetInfo` in a loop. The first
 question is – can we get our hands on a slow `GetInfo` request (i.e. a `GetInfo`
 request that has been blocked for a while)? We could attempt several ways of
-answering this; one way is to click on the GetInfo cell in the flame graph in
+answering this; one way is to click on the `GetInfo` cell in the flame graph in
 order to focus the visualization on goroutines that have a specific stack
 prefix, and then to switch to the stacks view that has more info on the
 goroutines.
