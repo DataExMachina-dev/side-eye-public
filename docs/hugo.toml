@@ -13,3 +13,6 @@ cloudFrontDistributionID = "E4IHFWYQPQOHX"
 
 [params]
 BookSection = '*'
+# (Optional, default favicon.png) Set the path to a favicon file.
+# If the favicon is /static/favicon.png then the path would be favicon.png
+BookFavicon = 'favicon.svg'
