@@ -62,7 +62,21 @@ Side-Eye uses the program configured for a process in a coupled of ways:
 
 ## Configuring multiple distinct environments
 
-TODO
+An agent can be configured to label the processes it monitors as belonging to a
+named "environment". This is useful when you want to segregate the
+machines/processes into groups that should be monitored separately. For example,
+you might have a `prod` and a `staging` environment, separating the respective
+processes. Or, if you are running a multi-tenant service with per-tenant VMs,
+you might want to group each tenant's machines/processes into separate
+environments.
+
+To configure the agent to use an environment, pass the `SIDE_EYE_ENVIRONMENT`
+variable to the installation command. This command also works for updating the
+parameters if the agent is already installed.
+```shell
+curl https://sh.side-eye.io | SIDE_EYE_API_TOKEN=<token> SIDE_EYE_ENVIRONMENT=<env name> sh`
+```
+
 
 ## Programs versus binaries
 
