@@ -102,12 +102,12 @@ higher-level "reports" out of the variable data.
 Side-Eye is made out of a control-plane that we (Data Ex Machina Debugging
 Company) run as a hosted service, and an agent that you need to run on every
 machine where any processes to be monitored are executing. Side-Eye is used
-through a [web app](https://app.side-eye.io). When you ask the web app to snapshot a bunch
-of processes, the Side-Eye control plane looks at your specification of what data
-to collect, asks the agents to retrieve the debug information of all the
-binaries are used by the processes to snapshot, and dynamically generates two
-programs for each one of the binaries: a eBPF probe and a user-space process
-that processes the data produced by the probe.
+through a [web app](https://app.side-eye.io). When you ask the web app to
+snapshot a bunch of processes, the Side-Eye control plane looks at your
+specification of what data to collect, asks the agents to retrieve the debug
+information of all the binaries used by the processes included in the snapshot,
+and dynamically generates two programs for each one of the binaries: an eBPF
+probe and a user-space process that processes the data produced by the probe.
 
 The generated eBPF probes know how do to a couple of things:
 
@@ -118,7 +118,7 @@ The generated eBPF probes know how do to a couple of things:
 - read the respective variables from memory and copy them to an output buffer
 - besides collecting full variables, Side-Eye can also "evaluate" expressions like
   `foo.bar.baz` consisting of accessing struct fields and dereferencing pointers
-- the probe understand a various go data structured; for example, it can
+- the probe understand various go data structures: for example, it can
   dereference interfaces and figure out what type hides behind the interface box
 
 The generated user-space processes decode the raw data produced by the probes
