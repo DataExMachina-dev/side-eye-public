@@ -86,5 +86,9 @@ See [Installing the Side-Eye agent]({{<relref "installing">}}) for more info.
 See [Side-Eye client library]({{<relref "client-library">}}) for more info.
 
 
+If you're running a Kubernetes cluster, you can also deploy the `side-eye-agent` using a
+helm chart. See [Deploying the Side-Eye agent in Kubernetes]({{<ref "kubernetes">}})
+for more info.
+
 [Side-Eye]: https://app.side-eye.io/
 [Side-Eye client library]: https://github.com/DataExMachina-dev/side-eye-go
