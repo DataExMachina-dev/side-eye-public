@@ -24,4 +24,8 @@ This will install the `side-eye-agent` through a snap package.
 
 See [Installing the Side-Eye agent]({{<ref "installing">}}) for more info.
 
+If you're running a Kubernetes cluster, you can also deploy the `side-eye-agent` using a
+helm chart. See [Deploying the Side-Eye agent in Kubernetes]({{<ref "kubernetes">}})
+for more info.
+
 [Side-Eye]: https://app.side-eye.io/
